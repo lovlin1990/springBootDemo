@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>弹框蒙板</title>
+    <style>
+	body{margin:0;overflow:hidden;}
+	.boxShadow{
+		position:fixed;
+		width:100%;
+		height:100%;
+		background:rgba(0,0,0,.6);
+		display:none;
+		-webkit-animation: fadeIn .5s;
+		animation: fadeIn .5s;
+	}
+	/*侧导航*/
+	.side_bar_right{
+		position:fixed;
+		height:100%;
+		width:0;
+		right:0;
+		top:0;
+	}
+	.side_bar_right .side_bar_tool{
+		position:absolute;
+		height:100%;
+		width:0;
+		top:0;
+		right:-270px;
+		transition: 0.5s;
+		-moz-transition: 0.5s;	/* Firefox 4 */
+		-webkit-transition: 0.5s;	/* Safari 和 Chrome */
+		-o-transition: 0.5s;	/* Opera */
+	}
+	.show_bar{
+		right:0px !important;
+	}
+	.hide_bar{
+		right:-270px !important;
+	}
+	.side_bar_right .bar_list{
+		position:absolute;
+		width:36px;
+		left: -306px;
+		top:50%;
+		transform:translateY(-50%);
+		-webkit-transform:translateY(-50%);
+		-moz-transform:translateY(-50%);
+		-ms-transform:translateY(-50%);
+	}
+	.side_bar_right .bar_line{
+		position:absolute;
+		width:3px;
+		height:100%;
+		right:270px;
+		background:#c1a375;
+		z-index: -1;
+	}
+	.side_bar_right .bar_list .bar_li{
+		width:35px;
+		height:35px;
+		margin-bottom:1px;
+		background:#c1a375;
+		color:#fff;
+		text-align:center;
+		line-height:35px;
+		border-radius:3px 0px 0px 3px;
+		cursor:pointer;
+		position: relative;
+		right: -1px;
+		transition: 0.3s;
+		-moz-transition: 0.3s;	/* Firefox 4 */
+		-webkit-transition: 0.3s;	/* Safari 和 Chrome */
+		-o-transition: 0.3s;	/* Opera */
+	}
+	.side_bar_right .bar_list .bar_li .bar_info{
+		position:relative;
+		font-size:14px;
+		width:80px;
+		height:35px;
+		left: 0px;
+		top: -35px;
+		background:#1fa7cb;
+		color:#fff;
+		text-align:center;
+		line-height:35px;
+		border-radius:3px 0px 0px 3px;
+		transition: 0.3s;
+		-moz-transition: 0.3s;	/* Firefox 4 */
+		-webkit-transition: 0.3s;	/* Safari 和 Chrome */
+		-o-transition: 0.3s;	/* Opera */
+		z-index:-1;
+	}
+	.side_bar_right .bar_list .bar_li:hover{
+		background:#1fa7cb;
+	}
+	.side_bar_right .bar_list .bar_li:hover .bar_info{
+		left: -77px;
+	}
+	.side_bar_right .bar_list .active{
+		background:#1fa7cb;
+		color:#fff;
+	}
+	.side_bar_right .bar_content{
+		position:absolute;
+		width:270px;
+		height:100%;
+		right:0;
+		top:0;
+		background:#edf1f2;
+	}
+	.side_bar_right .bar_content .bar_content_title{
+		width:100%;
+		height:35px;
+		line-height:35px;
+		background:#edf1f2;
+		padding-left:20px;
+	}
+	.side_bar_right .bar_content .bar_content_title .closebtn {
+		position: absolute;
+		top: 0;
+		right: 15px;
+		font-size: 30px;
+		cursor:pointer;
+		font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+		-webkit-transition: transform .2s ease-out 0s;
+		-webkit-transition: -webkit-transform .2s ease-out 0s;
+		transition: -webkit-transform .2s ease-out 0s;
+		transition: transform .2s ease-out 0s;
+		transition: transform .2s ease-out 0s,-webkit-transform .2s ease-out 0s;
+	}
+	.side_bar_right .bar_content .bar_content_title .closebtn:hover{
+		transform: rotate(180deg);
+		-ms-transform: rotate(180deg);		/* IE 9 */
+		-webkit-transform: rotate(180deg);	/* Safari and Chrome */
+		-o-transform: rotate(180deg);		/* Opera */
+		-moz-transform: rotate(180deg);		/* Firefox */
+	}
+	@keyframes fadeIn {
+	  0% {
+		right: -270px;
+	  }
+	  100% {
+		right: 0px;
+	  }
+	}
+	@keyframes fadeOut {
+	  0% {
+		right: 0px;
+	  }
+	  100% {
+		right: -270px;
+	  }
+	}
+</style>
+</head>
+
+<body>
+<div class="side_bar_right">
+    <div class="side_bar_tool">
+        <div class="bar_list">
+            <div class="bar_li">
+                <div>d</div>
+                <div class="bar_info">介绍信息</div>
+            </div>
+            <div class="bar_li">
+                <div>d</div>
+                <div class="bar_info">介绍信息</div>
+            </div>
+            <div class="bar_li">
+                <div>d</div>
+                <div class="bar_info">介绍信息</div>
+            </div>
+            <div class="bar_li">
+                <div>d</div>
+                <div class="bar_info">介绍信息</div>
+            </div>
+            <div class="bar_li">
+                <div>d</div>
+                <div class="bar_info">介绍信息</div>
+            </div>
+        </div>
+        <div class="bar_line"></div>
+        <div class="bar_content">
+            <div class="bar_content_title"><span class="t"></span><i class="closebtn">&times;</i></div>
+        </div>
+    </div>
+</div>
+
+<script src="jquery-1.8.3.min.js"></script>
+<script>
+		$(function(){
+			$(".side_bar_right").on('click','.bar_li',function(){
+				var tollBar = $(".side_bar_tool");
+				var tollBarlLi = $(".side_bar_tool .bar_li");
+				if(tollBar.hasClass("show_bar") && !$(this).hasClass('active')){
+					// 切换content
+
+					return;
+				}
+				// 是否显示content
+				if(tollBar.hasClass("show_bar")){
+					tollBar.addClass('hide_bar');
+					tollBar.removeClass('show_bar');
+					tollBarlLi.removeClass('active');
+				} else {
+					tollBar.addClass('show_bar');
+					tollBar.removeClass('hide_bar');
+					$(this).addClass('active');
+				}
+				// 给title赋值
+				var infoText = $(this).find(".bar_info").text();
+				$(".side_bar_right .bar_content_title .t").text(infoText);
+			});
+			/*关闭事件*/
+			$(".side_bar_right").on('click','.closebtn',function(){
+				var tollBar = $(".side_bar_tool");
+				var tollBarlLi = $(".side_bar_tool .bar_li");
+				tollBar.addClass('hide_bar');
+				tollBar.removeClass('show_bar');
+				tollBarlLi.removeClass('active');
+			});
+		});
+
+		//添加事件通用方法
+		function addEvent(element,e,fn) {
+			//firefox使用addEventListener，来添加事件
+			if(element.addEventListener) {
+			  element.addEventListener(e,fn,false);
+			}
+			//ie使用attachEvent，来添加事件
+			else {
+			  element.attachEvent("on"+e,fn);
+			}
+		}
+
+		function preventDefa(e){
+		  if(e && e.stopPropagation){
+			//阻止默认浏览器动作(W3C)
+			e.stopPropagation();
+			e.preventDefault();
+		  } else {
+			//IE中阻止函数器默认动作的方式
+			window.event.cancelBubble = true;
+			window.event.returnValue = false;
+		  }
+		}
+
+
+	</script>
+</body>
+
+</html>
